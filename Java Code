@@ -1,0 +1,86 @@
+class Character {
+    String name;
+    int health;
+    int mana;
+    int level;
+    public Character(String name, int health, int mana, int level) {
+        this.name = name;
+        this.health = health;
+        this.mana = mana;
+        this.level = level;
+    }
+    public void attack(Character target) {
+        System.out.println(this.name + " attacks " + target.name + "!");
+    }
+    public void defend() {
+        System.out.println(this.name + " defends!");
+    }
+    public void castSpell(Character target) {
+        System.out.println(this.name + " casts a spell on " + target.name + "!");
+    }
+    public void levelUp() {
+        this.level++;
+        System.out.println(this.name + " leveled up to level " + this.level + "!");
+    }
+}
+class Warrior extends Character {
+    int strength;
+    int armor;
+    public Warrior(String name, int health, int mana, int level, int strength, int armor) {
+        super(name, health, mana, level);
+        this.strength = strength;
+        this.armor = armor;
+    }
+    public void heavyAttack(Character target) {
+        System.out.println(this.name + " performs a heavy attack on " + target.name + "!");
+    }
+    public void shieldBlock() {
+        System.out.println(this.name + " blocks with their shield!");
+    }
+}
+class Mage extends Character {
+    int intelligence;
+    int spellPower;
+    public Mage(String name, int health, int mana, int level, int intelligence, int spellPower) {
+        super(name, health, mana, level);
+        this.intelligence = intelligence;
+        this.spellPower = spellPower;
+    }
+    public void fireball(Character target) {
+        System.out.println(this.name + " casts Fireball on " + target.name + "!");
+    }
+    public void teleport() {
+        System.out.println(this.name + " teleports!");
+    }
+}
+class Rogue extends Character {
+    int agility;
+    int dexterity;
+    public Rogue(String name, int health, int mana, int level, int agility, int dexterity) {
+        super(name, health, mana, level);
+        this.agility = agility;
+        this.dexterity = dexterity;
+    }
+    public void backstab(Character target) {
+        System.out.println(this.name + " backstabs " + target.name + "!");
+    }
+    public void dodge() {
+        System.out.println(this.name + " dodges the attack!");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Warrior warrior = new Warrior("Thor", 150, 50, 1, 20, 15);
+        Mage mage = new Mage("Merlin", 100, 200, 1, 25, 30);
+        Rogue rogue = new Rogue("Loki", 120, 80, 1, 30, 25);
+        warrior.attack(mage);
+        mage.castSpell(warrior);
+        rogue.attack(warrior);
+        warrior.heavyAttack(rogue);
+        mage.fireball(warrior);
+        rogue.backstab(mage);
+        warrior.levelUp();
+        mage.levelUp();
+        rogue.levelUp();
+    }
+}
